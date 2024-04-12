@@ -1,18 +1,25 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/data/constants.dart';
+import 'package:flutter_application_1/data/service_locator.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(HomeInitial());
+  HomeCubit()
+      : super(HomeState(
+          dateTime: DateTime.now(),
+          lastArticalTitle: "",
+        ));
 
-  void fetchData() {
-    final dateTie = DateTime.now();
-    final lastArticalitle = "bla bla";
+  updateData() async {
+    final lastArticalTitle =
+        (await sharedPrefs).getString(Constants.lastItemTitle) ?? "";
 
-    emit(HomeData(
-      dateTime: dateTie,
-      lastArticalTitle: lastArticalitle,
+    emit(state.copyWith(
+      dateTime: DateTime.now(),
+      lastArticalTitle: lastArticalTitle,
     ));
   }
 }

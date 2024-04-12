@@ -8,8 +8,8 @@ final getIt = GetIt.I;
 void setupLocator() {
   getIt.registerSingleton<DataRepository>(DataRepository());
   getIt.registerSingleton<HttpService>(HttpService());
-  getIt.registerSingletonAsync<SharedPrefs>(() async {
-    final prefs = SharedPrefs();
+  getIt.registerSingletonAsync<SharedPrefsService>(() async {
+    final prefs = SharedPrefsService();
     await prefs.init();
     return prefs;
   });
@@ -17,4 +17,4 @@ void setupLocator() {
 
 DataRepository dataRepository = getIt.get<DataRepository>();
 HttpService httpService = getIt.get<HttpService>();
-Future<SharedPrefs> sharedPrefs = getIt.getAsync<SharedPrefs>();
+Future<SharedPrefsService> sharedPrefs = getIt.getAsync<SharedPrefsService>();
