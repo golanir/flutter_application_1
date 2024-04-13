@@ -4,7 +4,6 @@ import 'package:flutter_application_1/data/constants.dart';
 import 'package:flutter_application_1/data/polling_service.dart';
 import 'package:flutter_application_1/data/service_locator.dart';
 import 'package:flutter_application_1/models/rss_model.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class DataRepository {
   List<PollingService> pollingList = [];
